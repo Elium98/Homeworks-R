@@ -1,0 +1,36 @@
+Part 1
+```{r}
+pesos_lb <- sample(160:200, 25, replace = F)
+pesos_lb
+```
+```{r}
+peso_personas <- matrix(pesos_lb, byrow = TRUE, ncol = 5)
+peso_personas
+```
+```{r}
+colnames(peso_personas) <- c("Enero","Febrero","Marzo","Abril","Mayo")
+peso_personas
+```
+```{r}
+rownames(peso_personas) <- c("Maria","Francisco","Marcos","Laura","Esteban")
+peso_personas
+```
+```{r}
+promedio_personas <- rowMeans(peso_personas)
+est_peso_personas <- cbind(peso_personas, promedio_personas)
+est_peso_personas
+
+```
+
+```{r}
+promedio_meses <- colMeans(est_peso_personas)
+est_peso_personas <- rbind(est_peso_personas, promedio_meses)
+est_peso_personas
+```
+
+
+
+
+
+
+
