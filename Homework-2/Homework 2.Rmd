@@ -70,7 +70,7 @@ Lapply
 ```{r}
 trees[1:5,]
 
-ejemp_1 <- lapply(trees, mean, FUN.VALUE = )
+ejemp_1 <- lapply(trees, mean)
 ejemp_1
 class(ejemp_1)
 
