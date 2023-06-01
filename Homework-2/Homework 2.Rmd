@@ -1,0 +1,120 @@
+FUNCIONES EN R
+
+   Una función puede considerarse un subprograma que resuelve una subtarea. Su finalidad es poder encapsular fragmentos de código que necesiten ser ejecutados en múltiples ocasiones, con la posibilidad de ejecutarlos en cada ocasión con diferentes parámetro. A su vez, las funciones aumentan la legibilidad de un programa, de modo que es más fácil de entender para uno mismo y para los demás en caso de compartirlo ya que que permiten estructurar u organizar el código de un programa.
+
+Estructura de una funcion
+
+  Las partes de una función son:
+
+  -Entradas o argumentos: sirven para ingresar información necesaria para realizar el procedimiento de la función. Los argumentos pueden estar vacíos y a la espera de que el usuario ingrese valores, o pueden tener valores por defecto, esto significa que si el usuario no ingresa un valor, la función usará el valor por defecto.
+  -Cuerpo: está formado por un conjunto de instrucciones que transforman las entradas en las salidas deseadas. Si el cuerpo de la función está formado por varias instrucciones éstas deben ir entre llaves { }.
+  -Salidas: son los resultados de la función. Toda función debe tener al menos un resultado. Si una función entrega varios tipos de objetos se acostumbra a organizarlos en una lista que puede manejar los diferentes tipos de objetos.
+
+Ejemplos
+```{r}
+mayor <- function(uno,dos){
+  if (uno < dos){
+    cat("El numero", dos, "es mayor al numero", uno)
+  } else {
+    cat("El numero", uno, "es mayor al numero", dos)
+  }
+}
+
+mayor(5,10)
+```
+```{r}
+velocidad <- function(distancia,tiempo,confirmacion){
+  if(confirmacion == 1){
+    espacio <- distancia * 1000
+    totalidad <- tiempo * 60
+    resultado <- espacio / totalidad
+    cat("La velocidad del proyectil es de:", resultado,"m/s")
+  } else if(confirmacion == 2){
+    totalidad <- tiempo / 60
+    resultado <- distancia / totalidad
+    cat("La velocidad del proyectil es de:", resultado,"km/h")
+  } else if (confirmacion != 1 & confirmacion != 2){
+    return("No se especifico las dimencionales de la velocidad solicitada")
+  }
+}
+velocidad(3,12,3)#la distancia se ingresa en km y el tiempo se ingresa en minutos.
+                #para obtener el resultado en km/h se ingresa 2 en confirmacion
+                #para obtener el resultado en m/s se ingresa 1 en confirmacion
+
+```
+
+
+Argumentos de una funcion 
+
+  Los argumentos de una función son una serie de valores (opcionales) que se pasan a la función, de modo que ciertas variables dentro de estas posean diferentes valores en cada llamada a la función. Los argumentos se separan por una coma dentro de "función()". Puede ser cualquier tipo y cantidad de argumentos. Los argumentos son los ingredientes que necesitas para que se ejecute la función.
+
+Argumentos por valor 
+
+  En R no es necesario declarar las variables utilizadas dentro de una función. La regla llamada “ámbito lexicográfico” se usa para decidir si un objeto es local a una función o global. 
+
+  Una función puede realizar cálculos complejos, por lo que a veces necesita usar variables para almacenar los resultados intermedios de sus cálculos. Las variables creadas en una función se llaman variables locales. Las variables locales, junto con los parámetros formales, se crean al ejecutarse la función y normalmente desaparecen al terminar su ejecución. Las variables locales y parámetros formales son independientes de otras variables que puedan existir fuera de la función con el mismo nombre.
+  
+  Las variables que se crean fuera de una función se conocen como variables globales. Las variables globales pueden ser utilizadas por todos, tanto dentro como fuera de las funciones. Si crea una variable con el mismo nombre dentro de una función, esta variable será local y solo se puede usar dentro de la función. La variable global con el mismo nombre quedará como estaba, global y con el valor original. Para cambiar el valor global de una variable dentro de una función, puedes usar el operador de doble asignación (<<-).
+  
+  
+
+
+FAMILIA APPLY
+
+  Las funciones de la familia apply en R son un conjunto bien conocido de funciones vectorizadas de R que permiten realizar tareas complejas sobre cada elemento de una estructura de datos. En particular, es usada para aplicar funciones en matrices, data frames, arrays y listas, evitando el uso de bucles for. 
+
+Lapply
+
+  Esta función permite trabajar con vectores, listas o data frame. Se pueden aplicar operaciones por elementos las cuales son retornadas como una lista.
+  
+```{r}
+trees[1:5,]
+
+ejemp_1 <- lapply(trees, mean, FUN.VALUE = )
+ejemp_1
+class(ejemp_1)
+
+mi_vector1 <- 8:17
+resultado1 <- sapply(mi_vector1, sqrt)
+resultado1
+
+```
+
+Sapply
+
+  La función sapply() en R está hecha para realizarle operaciones en data frame, vectores y listas, pero igual admite otro tipo de objeto. La diferencia con la función apply() es que la función devuelve un vector.
+
+```{r}
+trees[1:5,]
+
+ejemp_2 <- sapply(trees, mean)
+ejemp_2
+class(ejemp_2)
+
+
+mi_vector2 <- 8:17
+resultado2 <- sapply(mi_vector2, sqrt)
+resultado2
+```
+
+Vapply
+
+  La función vapply es muy similar en comparación con la función sapply, pero al usar vapply se necesita especificar el tipo de salida explícitamente.
+  
+```{r}
+trees[1:5,]
+
+ejemp_3 <- vapply(trees, mean, double(1))
+ejemp_3
+class(ejemp_3)
+
+
+mi_vector3 <- 8:17
+resultado3 <- vapply(mi_vector3, sqrt, FUN.VALUE = double(1))
+resultado3
+```
+
+
+
+
+
